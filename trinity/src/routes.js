@@ -11,7 +11,7 @@ import VoteEventsPage from "./pages/VoteEventsPage";
 import DashboardAppPage from "./pages/DashboardAppPage";
 import RegisterPage from "./pages/RegisterPage";
 import CreateEvent from "./pages/CreateEvent";
-
+import Home from "./pages/Home";
 // ----------------------------------------------------------------------
 
 export default function Router() {
