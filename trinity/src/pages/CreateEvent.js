@@ -20,12 +20,17 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 function CreateEvent() {
 
   const { t } = useTranslation();
+  const [click,setClick] = useState(false);
+
+  const handleClick = () => {
+      setClick(true);
+  }
   return (
      <Container>
         <Typography variant="h4" sx={{ mb: 5 }}>
         {t("create_a_voting_event")}
         </Typography>
-    <Stack spacing={3} sx={{maxWidth:400}}>
+    <Stack spacing={3} sx={{maxWidth:600}}>
       <TextField name="Name" label={t("name_of_voting_event")}  id="outlined-required"></TextField>
       <TextField
         name="name"
@@ -53,10 +58,9 @@ function CreateEvent() {
     <Typography>Enter Candidate Name and Key</Typography>
     <Box sx={{display:'flex',  }}>
       <EventCandidate />
-      <Button><AddCircleIcon /></Button>
+      <Button onClick={handleClick}><AddCircleIcon /></Button>
     </Box>
     </Stack>
-
     <br/>
     <Box sx={{display:'flex',justifyContent:'center'}}>
     <LoadingButton size="large"  variant="contained">

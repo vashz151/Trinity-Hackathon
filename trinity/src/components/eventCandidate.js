@@ -5,7 +5,8 @@ import Grid from '@mui/material/Grid';
 function EventCandidate() {
   return (
     <>
-    <TextField id="outlined-basic" label="Candidate Name" variant="outlined" /> 
+    <TextField id="outlined-basic" label="Candidate Name" variant="outlined" 
+    sx={{marginRight:'20px'}}/> 
     <TextField id="outlined-basic" label="Unique Key" variant="outlined" />
     </>
   
