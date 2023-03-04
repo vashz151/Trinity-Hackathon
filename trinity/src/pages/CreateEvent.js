@@ -29,7 +29,12 @@ import DeleteIcon from "@mui/icons-material/Delete";
 function CreateEvent() {
   const { t } = useTranslation();
   const [count, setCount] = useState(0);
-  const [candidate, setCandidate] = useState([]);
+  const [candidate, setCandidate] = useState([
+    {
+      name: "",
+      key: "",
+    },
+  ]);
   const handleClick = () => {
     setCount(count + 1);
     setCandidate([
