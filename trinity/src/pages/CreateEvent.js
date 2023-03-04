@@ -2,19 +2,9 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 // @mui
-import {
-  Link,
-  Stack,
-  IconButton,
-  InputAdornment,
-  TextField,
-  Checkbox,
-  Typography,
-  Button,
-} from "@mui/material";
+import { Stack, TextField, Typography, Button } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 // components
-import Iconify from "../components/iconify/Iconify";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import Radio from "@mui/material/Radio";
@@ -23,7 +13,6 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import { useTranslation } from "react-i18next";
-import EventCandidate from "../components/eventCandidate";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import DeleteIcon from "@mui/icons-material/Delete";
 function CreateEvent() {
@@ -135,7 +124,6 @@ function CreateEvent() {
           </Box>
         ))}
       </Stack>
-      <div>candidate: {JSON.stringify(candidate)}</div>
       <br />
       <Box sx={{ display: "flex", justifyContent: "center" }}>
         <LoadingButton size="large" variant="contained">

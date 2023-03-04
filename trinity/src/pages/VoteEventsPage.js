@@ -1,12 +1,12 @@
-import { Helmet } from 'react-helmet-async';
-import { useState } from 'react';
+import { Helmet } from "react-helmet-async";
+import { useState } from "react";
 // @mui
-import { Container, Stack, Typography } from '@mui/material';
+import { Container, Typography } from "@mui/material";
 // components
-import { ProductList } from '../sections/@dashboard/products';
+import { ProductList } from "../sections/@dashboard/products";
 // mock
-import PRODUCTS from '../_mock/products';
-import { useTranslation } from 'react-i18next';
+import PRODUCTS from "../_mock/products";
+import { useTranslation } from "react-i18next";
 // ----------------------------------------------------------------------
 
 export default function VoteEventsPage() {
@@ -31,7 +31,6 @@ export default function VoteEventsPage() {
           {t("ongoing_elections")}
         </Typography>
         <ProductList products={PRODUCTS} />
-     
       </Container>
     </>
   );
