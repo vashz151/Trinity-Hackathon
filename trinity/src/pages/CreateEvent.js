@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 // @mui
-import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox, Typography } from '@mui/material';
+import { Link, Stack, IconButton, InputAdornment, TextField, Checkbox, Typography, Button } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 // components
 import Iconify from '../components/iconify/Iconify';
@@ -14,6 +14,8 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import { useTranslation } from 'react-i18next';
+import EventCandidate from '../components/eventCandidate';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 function CreateEvent() {
 
@@ -24,14 +26,16 @@ function CreateEvent() {
         {t("create_a_voting_event")}
         </Typography>
     <Stack spacing={3} sx={{maxWidth:400}}>
-      <TextField name="Name" label={t("name_of_voting_event")}></TextField>
+      <TextField name="Name" label={t("name_of_voting_event")}  id="outlined-required"></TextField>
       <TextField
         name="name"
         label={t("skateholder_name")}
+        id="outlined-required"
       />
        <TextField
         name="describe"
         label={t("description")}
+        id="outlined-required"
         multiline
           rows={3}
       />
@@ -46,9 +50,14 @@ function CreateEvent() {
         <FormControlLabel value="male" control={<Radio />} label={t("single_choice")} />
       </RadioGroup>
     </FormControl>
+    <Typography>Enter Candidate Name and Key</Typography>
+    <Box sx={{display:'flex',  }}>
+      <EventCandidate />
+      <Button><AddCircleIcon /></Button>
+    </Box>
     </Stack>
 
-    
+    <br/>
     <Box sx={{display:'flex',justifyContent:'center'}}>
     <LoadingButton size="large"  variant="contained">
     {t("create_event")}

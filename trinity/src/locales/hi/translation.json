@@ -8,7 +8,9 @@
     "type_of_voting": "मतदान का प्रकार",
     "approval":"अनुमोदन मतदान",
     "single_choice":"एकल विकल्प",
-    "create_event":"चुनाव बनाएँ"
+    "create_event":"चुनाव बनाएँ",
+    "election_result":"चुनाव परिणाम",
+    "ongoing_elections": "चल रहे चुनाव"
 
 
   }
