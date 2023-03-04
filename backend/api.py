@@ -21,6 +21,3 @@ def sendOtp(mobile):
     except TwilioRestException as e:
         status = "failed"
         return None, None, status
-
-
-sendOtp(1234567890)
