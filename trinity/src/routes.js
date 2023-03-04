@@ -7,18 +7,17 @@ import ResultPage from "./pages/ResultPage";
 import UserPage from "./pages/UserPage";
 import LoginPage from "./pages/LoginPage";
 import Page404 from "./pages/Page404";
-import VoteEventsPage from "./pages/VoteEventsPage";
 import DashboardAppPage from "./pages/DashboardAppPage";
 import RegisterPage from "./pages/RegisterPage";
 import CreateEvent from "./pages/CreateEvent";
-
+import Home from "./pages/Home";
 // ----------------------------------------------------------------------
 
 export default function Router() {
   const routes = useRoutes([
     {
       path: "/",
-      element: <Navigate to="/login" replace />,
+      element: <Home />,
     },
     {
       path: "/dashboard",
@@ -27,18 +26,11 @@ export default function Router() {
         { element: <Navigate to="/dashboard/app" /> },
         { path: "app", element: <DashboardAppPage /> },
         { path: "user", element: <UserPage /> },
-        { path: "vote", element: <VoteEventsPage /> },
-        { path: "result", element: <ResultPage /> },
-        { path: "event", element: <CreateEvent /> },
       ],
     },
     {
       path: "login",
       element: <LoginPage />,
-    },
-    {
-      path: "Register",
-      element: <RegisterPage />,
     },
     {
       element: <SimpleLayout />,

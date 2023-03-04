@@ -1,20 +1,21 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import Button from "@mui/material/Button";
 import Popover from "@mui/material/Popover";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListSubheader from "@mui/material/ListSubheader";
+import ListItemButton from "@mui/material/ListItemButton";
 
 const languageMap = {
   en: { label: "English", dir: "ltr", active: true },
-  fr: { label: "हिंदी", dir: "ltr", active: false }
+  fr: { label: "हिंदी", dir: "ltr", active: false },
 };
 
 const LanguagePopover = () => {
-  const selected = localStorage.getItem("i18nextLng") || "en";
+  const [selected, setSelected] = React.useState("en");
   const { t } = useTranslation();
 
   const [menuAnchor, setMenuAnchor] = React.useState(null);
@@ -34,22 +35,25 @@ const LanguagePopover = () => {
         onClose={() => setMenuAnchor(null)}
         anchorOrigin={{
           vertical: "bottom",
-          horizontal: "right"
+          horizontal: "right",
         }}
         transformOrigin={{
           vertical: "top",
-          horizontal: "right"
+          horizontal: "right",
         }}
       >
         <div>
           <List>
             <ListSubheader>{t("select_language")}</ListSubheader>
-            {Object.keys(languageMap)?.map(item => (
+            {Object.keys(languageMap)?.map((item) => (
               <ListItem
-                button
+                //create a button and set it to true without deprecation warning
+                component={ListItemButton}
                 key={item}
                 onClick={() => {
                   i18next.changeLanguage(item);
+                  localStorage.setItem("i18nextLng", item);
+                  setSelected(item);
                   setMenuAnchor(null);
                 }}
               >
