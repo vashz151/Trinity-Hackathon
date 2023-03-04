@@ -2,8 +2,6 @@ import PropTypes from "prop-types";
 // @mui
 import { Box, Card, Link, Typography, Stack } from "@mui/material";
 import { styled } from "@mui/material/styles";
-// utils
-import { fCurrency } from "../../../utils/formatNumber";
 // components
 import Label from "../../../components/label";
 import { ColorPreview } from "../../../components/color-utils";
@@ -15,6 +13,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
+import { useTranslation } from 'react-i18next';
 // ----------------------------------------------------------------------
 
 const StyledProductImg = styled("img")({
@@ -47,7 +46,7 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 });
 
 export default function ShopProductCard({ product }) {
-  const { name, cover, price, colors, status, priceSale } = product;
+  const { name, cover, status } = product;
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -62,24 +61,10 @@ export default function ShopProductCard({ product }) {
     }
     setOpenButton(false);
   };
+  const { t } = useTranslation();
   return (
     <Card>
       <Box sx={{ pt: "100%", position: "relative" }}>
-        {status && (
-          <Label
-            variant="filled"
-            color={(status === "sale" && "error") || "info"}
-            sx={{
-              zIndex: 9,
-              top: 16,
-              right: 16,
-              position: "absolute",
-              textTransform: "uppercase",
-            }}
-          >
-            {status}
-          </Label>
-        )}
         <StyledProductImg alt={name} src={cover} />
       </Box>
 
@@ -104,8 +89,8 @@ export default function ShopProductCard({ product }) {
                 color: "text.disabled",
               }}
             >
-              <Button variant="outlined" onClick={handleOpen}>
-                Vote
+              <Button sx={{boxShadow:24, backgroundColor:'#b0b8ce'}} variant="contained" onClick={handleOpen}>
+                {t('vote')}
               </Button>
             </Typography>
           </Typography>

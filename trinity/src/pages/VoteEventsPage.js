@@ -3,7 +3,7 @@ import { useState } from 'react';
 // @mui
 import { Container, Stack, Typography } from '@mui/material';
 // components
-import { ProductList, ProductCartWidget } from '../sections/@dashboard/products';
+import { ProductList } from '../sections/@dashboard/products';
 // mock
 import PRODUCTS from '../_mock/products';
 import { useTranslation } from 'react-i18next';
@@ -31,7 +31,7 @@ export default function VoteEventsPage() {
           {t("ongoing_elections")}
         </Typography>
         <ProductList products={PRODUCTS} />
-        <ProductCartWidget />
+     
       </Container>
     </>
   );
