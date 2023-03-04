@@ -1,0 +1,15 @@
+{
+  "select_language": "भाषा चुने",
+    "hi_welcome_back": "वापसी पर स्वागत है",
+    "create_a_voting_event": "चुनाव पद सृजित करें",
+    "name_of_voting_event": "मतदान कार्यक्रम का नाम",
+    "skateholder_name": "मालिक का नाम",
+    "description": "विवरण",
+    "type_of_voting": "मतदान का प्रकार",
+    "approval":"अनुमोदन मतदान",
+    "single_choice":"एकल विकल्प",
+    "create_event":"चुनाव बनाएँ"
+
+
+  }
+  
