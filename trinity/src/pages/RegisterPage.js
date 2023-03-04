@@ -75,7 +75,6 @@ export default function RegisterPage() {
             </Typography>
             <Divider sx={{ my: 3 }}>
             </Divider>
-
             <LoginForm />
           </StyledContent>
         </Container>

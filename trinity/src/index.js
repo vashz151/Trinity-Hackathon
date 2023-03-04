@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom/client';
-
+import "./i18Init";
 //
 import App from './App';
 import * as serviceWorker from './serviceWorker';

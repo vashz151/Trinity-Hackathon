@@ -28,7 +28,7 @@ export default function VoteEventsPage() {
 
       <Container>
         <Typography variant="h4" sx={{ mb: 5 }}>
-          Events to Vote for
+          Ongoing Voting Elections
         </Typography>
         <ProductList products={PRODUCTS} />
         <ProductCartWidget />

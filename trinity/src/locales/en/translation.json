@@ -1,0 +1,13 @@
+{
+    "select_language": "Select Language",
+    "hi_welcome_back": "Hi, Welcome back",
+    "create_a_voting_event": "Create a Voting Event",
+    "name_of_voting_event": "name of voting event",
+    "skateholder_name": "Skateholder Name",
+    "description": "description",
+    "type_of_voting": "Type of voting",
+    "approval":"Approval Voting",
+    "single_choice":"Single Choice",
+    "create_event":"Create Election"
+  }
+  
