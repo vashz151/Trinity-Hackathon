@@ -6,7 +6,6 @@ contract Ballot{
     struct Voter{
         uint weight;
         bool voted;
-        uint voteTo;
     }
     // struct for a proposal
     struct Candidate{
@@ -57,20 +56,19 @@ contract Ballot{
     }
 
     // vote for a candidate
-    function approvalVoting(uint _eventId, uint [] _candidateId) public{
+    function approvalVoting(uint _eventId, uint [] memory _candidateId) public{
         if(voters[msg.sender].weight == 0){
             voters[msg.sender] = Voter({
                 weight: 1,
-                voted: false,
-                voteTo: 0
+                voted: false
             });
         }
         Voter storage sender = voters[msg.sender];
         require(!sender.voted, "Already voted");
         sender.voted = true;
-        sender.voteTo = _candidateId;
         events[_eventId].totalVotes += 1;
         for(uint i = 0; i < _candidateId.length; i++){
+            msg.sender.transfer(0.5 ether);
             listCandidates[_eventId][_candidateId[i]].voteCount += 1;
         }
     }
@@ -79,20 +77,23 @@ contract Ballot{
         if(voters[msg.sender].weight == 0){
             voters[msg.sender] = Voter({
                 weight: 1,
-                voted: false,
-                voteTo: 0
+                voted: false
             });
         }
         Voter storage sender = voters[msg.sender];
         require(!sender.voted, "Already voted");
         sender.voted = true;
-        sender.voteTo = _candidateId;
         events[_eventId].totalVotes += 1;
+        msg.sender.transfer(0.5 ether);
         listCandidates[_eventId][_candidateId].voteCount += 1;
     }
 
     function isOwner () public view returns(bool){
         return msg.sender == owner;
+    }
+
+    function showOwner () public view returns(address){
+        return owner;
     }
 
 
