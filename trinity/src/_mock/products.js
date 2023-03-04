@@ -17,12 +17,12 @@ const PRODUCT_COLOR = ['#00AB55', '#000000', '#FFFFFF', '#FFC0CB', '#FF4842', '#
 
 // ----------------------------------------------------------------------
 
-const products = [...Array(24)].map((_, index) => {
+const products = [...Array(10)].map((_, index) => {
   const setIndex = index + 1;
 
   return {
     id: faker.datatype.uuid(),
-    cover: `/assets/images/products/product_${setIndex}.jpg`,
+    cover: `/assets/images/covers/cover_${setIndex}.jpg`,
     name: PRODUCT_NAME[index],
     colors:
       (setIndex === 1 && PRODUCT_COLOR.slice(0, 2)) ||

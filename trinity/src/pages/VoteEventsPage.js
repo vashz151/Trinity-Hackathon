@@ -6,7 +6,7 @@ import { Container, Stack, Typography } from '@mui/material';
 import { ProductList, ProductCartWidget } from '../sections/@dashboard/products';
 // mock
 import PRODUCTS from '../_mock/products';
-
+import { useTranslation } from 'react-i18next';
 // ----------------------------------------------------------------------
 
 export default function VoteEventsPage() {
@@ -19,7 +19,7 @@ export default function VoteEventsPage() {
   const handleCloseFilter = () => {
     setOpenFilter(false);
   };
-
+  const { t } = useTranslation();
   return (
     <>
       <Helmet>
@@ -28,7 +28,7 @@ export default function VoteEventsPage() {
 
       <Container>
         <Typography variant="h4" sx={{ mb: 5 }}>
-          Ongoing Voting Elections
+          {t("ongoing_elections")}
         </Typography>
         <ProductList products={PRODUCTS} />
         <ProductCartWidget />

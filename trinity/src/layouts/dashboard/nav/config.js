@@ -23,7 +23,7 @@ const navConfig = [
   },
   {
     title: 'blog',
-    path: '/dashboard/blog',
+    path: '/dashboard/result',
     icon: icon('ic_blog'),
   },
   {

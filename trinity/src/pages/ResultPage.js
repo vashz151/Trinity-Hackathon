@@ -7,13 +7,11 @@ import { BlogPostCard } from '../sections/@dashboard/blog';
 // mock
 import POSTS from '../_mock/blog';
 import { AppWidgetSummary } from '../sections/@dashboard/app';
+import { useTranslation } from 'react-i18next';
 
-// ----------------------------------------------------------------------
 
-
-// ----------------------------------------------------------------------
-
-export default function BlogPage() {
+export default function ResultPage() {
+  const { t } = useTranslation();
   return (
     <>
       <Helmet>
@@ -23,15 +21,9 @@ export default function BlogPage() {
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
-            Election Results
+            {t("election_result")}
           </Typography>
         </Stack>
-
-        {/* <Stack mb={5} direction="row" alignItems="center" justifyContent="space-between">
-          <BlogPostsSearch posts={POSTS} />
-          <BlogPostsSort options={SORT_OPTIONS} />
-        </Stack> */}
-
         <Grid container spacing={3}>
           {POSTS.map((post, index) => (
             <BlogPostCard key={post.id} post={post} index={index} />

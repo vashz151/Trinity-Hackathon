@@ -3,7 +3,7 @@ import { Navigate, useRoutes } from "react-router-dom";
 import DashboardLayout from "./layouts/dashboard";
 import SimpleLayout from "./layouts/simple";
 //
-import BlogPage from "./pages/BlogPage";
+import ResultPage from "./pages/ResultPage";
 import UserPage from "./pages/UserPage";
 import LoginPage from "./pages/LoginPage";
 import Page404 from "./pages/Page404";
@@ -28,7 +28,7 @@ export default function Router() {
         { path: "app", element: <DashboardAppPage /> },
         { path: "user", element: <UserPage /> },
         { path: "vote", element: <VoteEventsPage /> },
-        { path: "blog", element: <BlogPage /> },
+        { path: "result", element: <ResultPage /> },
         { path: "event", element: <CreateEvent /> },
       ],
     },

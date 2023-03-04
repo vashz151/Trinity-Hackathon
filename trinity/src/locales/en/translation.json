@@ -8,6 +8,8 @@
     "type_of_voting": "Type of voting",
     "approval":"Approval Voting",
     "single_choice":"Single Choice",
-    "create_event":"Create Election"
+    "create_event":"Create Election",
+    "election_result":"Election Result",
+    "ongoing_elections":"Ongoing Elections"
   }
   
