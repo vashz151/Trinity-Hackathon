@@ -8,6 +8,8 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListSubheader from "@mui/material/ListSubheader";
 import ListItemButton from "@mui/material/ListItemButton";
+import GTranslateIcon from '@mui/icons-material/GTranslate';
+import { Icon } from '@iconify/react';
 
 const languageMap = {
   en: { label: "English", dir: "ltr", active: true },
@@ -25,7 +27,11 @@ const LanguagePopover = () => {
 
   return (
     <div className="d-flex justify-content-end align-items-center language-select-root">
+      <Button SX={{marginRight:'20px'}} variant='outlined'>
+        My Wallet
+      </Button>
       <Button onClick={({ currentTarget }) => setMenuAnchor(currentTarget)}>
+      <GTranslateIcon sx={{marginRight:'20px'}} />
         {languageMap[selected].label}
         <ArrowDropDownIcon fontSize="small" />
       </Button>

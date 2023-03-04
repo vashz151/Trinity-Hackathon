@@ -10,7 +10,10 @@
     "single_choice":"एकल विकल्प",
     "create_event":"चुनाव बनाएँ",
     "election_result":"चुनाव परिणाम",
-    "ongoing_elections": "चल रहे चुनाव"
+    "ongoing_elections": "चल रहे चुनाव",
+    "number_of_elections":"चुनावों की संख्या",
+    "total_users": "कुल मतदाता",
+    "vote":"मतदान"
 
 
   }

@@ -10,6 +10,10 @@
     "single_choice":"Single Choice",
     "create_event":"Create Election",
     "election_result":"Election Result",
-    "ongoing_elections":"Ongoing Elections"
+    "ongoing_elections":"Ongoing Elections",
+    "number_of_elections":"Number of Elections",
+    "total_users": "Total Users",
+    "vote":"VOTE"
+    
   }
   

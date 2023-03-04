@@ -9,7 +9,8 @@ import Logo from '../components/logo';
 import Iconify from '../components/iconify';
 // sections
 import { LoginForm } from '../sections/auth/login';
-
+import Lottie from 'react-lottie';
+import animationData from '../lottie/134945-zpunet-icon.json';
 
 // ----------------------------------------------------------------------
 
@@ -19,9 +20,18 @@ const StyledRoot = styled('div')(({ theme }) => ({
   },
 }));
 
+const defaultOptions = {
+  loop: true,
+  autoplay: true,
+  animationData: animationData,
+  rendererSettings: {
+    preserveAspectRatio: "xMidYMid slice"
+  }
+};
+
 const StyledSection = styled('div')(({ theme }) => ({
   width: '100%',
-  maxWidth: 480,
+  maxWidth: 650,
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
@@ -30,7 +40,7 @@ const StyledSection = styled('div')(({ theme }) => ({
 }));
 
 const StyledContent = styled('div')(({ theme }) => ({
-  maxWidth: 480,
+  maxWidth: 600,
   margin: 'auto',
   minHeight: '100vh',
   display: 'flex',
@@ -64,7 +74,11 @@ export default function RegisterPage() {
             <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
               Hi, Welcome Back
             </Typography>
-            <img src="/assets/illustrations/illustration_login.png" alt="login" />
+            <Lottie 
+	    options={defaultOptions}
+        height={400}
+        width={400}
+      />
           </StyledSection>
         )}
 

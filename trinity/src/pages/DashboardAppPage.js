@@ -7,6 +7,7 @@ import { Grid, Container, Typography } from '@mui/material';
 import Iconify from '../components/iconify';
 import { useTranslation } from 'react-i18next';
 
+
 // sections
 import {
   AppTasks,
@@ -28,7 +29,7 @@ export default function DashboardAppPage() {
   return (
     <>
       <Helmet>
-        <title> Dashboard | Minimal UI </title>
+        <title> Dashboard | MyVote </title>
       </Helmet>
 
       <Container maxWidth="xl">
@@ -38,19 +39,19 @@ export default function DashboardAppPage() {
 
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title={t("Weekly Sales")} total={714000} icon={'ant-design:android-filled'} />
+            <AppWidgetSummary title={t("number_of_elections")} total={714} icon={'ant-design:dollar-circle-twotone'} />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="New Users" total={1352831} color="info" icon={'ant-design:apple-filled'} />
+            <AppWidgetSummary title={t("total_users")} total={1352831} color="info" icon={'ant-design:user-outlined'} />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="Item Orders" total={1723315} color="warning" icon={'ant-design:windows-filled'} />
+            <AppWidgetSummary title="Item Orders" total={1723315} color="warning" icon={'ant-design:gitlab-filled'} />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="Bug Reports" total={234} color="error" icon={'ant-design:bug-filled'} />
+            <AppWidgetSummary title="Bug Reports" total={234} color="error" icon={'ant-design:gold-filled'} />
           </Grid>
 
           <Grid item xs={12} md={6} lg={8}>

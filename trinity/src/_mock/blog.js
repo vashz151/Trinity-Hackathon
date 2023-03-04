@@ -21,7 +21,6 @@ const posts = [...Array(8)].map((_, index) => ({
   createdAt: faker.date.past(),
   view: faker.datatype.number(),
   comment: faker.datatype.number(),
-  share: faker.datatype.number(),
   favorite: faker.datatype.number(),
   author: {
     name: faker.name.fullName(),

@@ -11,7 +11,7 @@ import Iconify from '../../../components/iconify';
 
 const StyledCardMedia = styled('div')({
   position: 'relative',
-  paddingTop: 'calc(100% * 3 / 4)',
+  paddingTop: 'calc(70% * 3 / 4)',
 });
 
 const StyledTitle = styled(Link)({
@@ -34,8 +34,8 @@ const StyledAvatar = styled(Avatar)(({ theme }) => ({
 const StyledInfo = styled('div')(({ theme }) => ({
   display: 'flex',
   flexWrap: 'wrap',
-  justifyContent: 'flex-end',
-  marginTop: theme.spacing(3),
+  justifyContent: 'center',
+  marginTop: theme.spacing(4),
   color: theme.palette.text.disabled,
 }));
 
@@ -62,12 +62,11 @@ export default function BlogPostCard({ post, index }) {
   const POST_INFO = [
     { number: comment, icon: 'eva:message-circle-fill' },
     { number: view, icon: 'eva:eye-fill' },
-    { number: share, icon: 'eva:share-fill' },
   ];
 
   return (
     <Grid item xs={12}  md={3}>
-      <Card sx={{ position: 'relative' }}>
+      <Card sx={{ position: 'relative', minHeight:'300px'}}>
         <StyledCardMedia
         >
           <SvgColor

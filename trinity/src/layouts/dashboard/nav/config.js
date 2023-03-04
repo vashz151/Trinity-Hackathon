@@ -22,7 +22,7 @@ const navConfig = [
     icon: icon('ic_cart'),
   },
   {
-    title: 'blog',
+    title: 'Election Result',
     path: '/dashboard/result',
     icon: icon('ic_blog'),
   },
