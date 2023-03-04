@@ -7,8 +7,10 @@ import BlogPage from './pages/BlogPage';
 import UserPage from './pages/UserPage';
 import LoginPage from './pages/LoginPage';
 import Page404 from './pages/Page404';
-import ProductsPage from './pages/ProductsPage';
+import VoteEventsPage from './pages/VoteEventsPage';
 import DashboardAppPage from './pages/DashboardAppPage';
+import RegisterPage from './pages/RegisterPage';
+import CreateEvent from './pages/CreateEvent';
 
 // ----------------------------------------------------------------------
 
@@ -21,13 +23,18 @@ export default function Router() {
         { element: <Navigate to="/dashboard/app" />, index: true },
         { path: 'app', element: <DashboardAppPage /> },
         { path: 'user', element: <UserPage /> },
-        { path: 'products', element: <ProductsPage /> },
+        { path: 'vote', element: <VoteEventsPage /> },
         { path: 'blog', element: <BlogPage /> },
+        { path: 'event', element: <CreateEvent /> },
       ],
     },
     {
       path: 'login',
       element: <LoginPage />,
+    },
+    {
+      path: 'Register',
+      element: <RegisterPage />,
     },
     {
       element: <SimpleLayout />,

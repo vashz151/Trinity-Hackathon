@@ -9,7 +9,6 @@ import Logo from '../components/logo';
 import Iconify from '../components/iconify';
 // sections
 import { LoginForm } from '../sections/auth/login';
-import { useNavigate } from 'react-router-dom';
 
 
 // ----------------------------------------------------------------------
@@ -40,13 +39,11 @@ const StyledContent = styled('div')(({ theme }) => ({
   padding: theme.spacing(12, 0),
 }));
 
-
 // ----------------------------------------------------------------------
 
-export default function LoginPage() {
+export default function RegisterPage() {
   const mdUp = useResponsive('up', 'md');
-  const navigate = useNavigate();
-  const handleClick = () => navigate('/register');
+
   return (
     <>
       <Helmet>
@@ -74,18 +71,9 @@ export default function LoginPage() {
         <Container maxWidth="sm">
           <StyledContent>
             <Typography variant="h4" gutterBottom>
-              Sign in to VoteRight
+              Register to VoteRight
             </Typography>
-            <Typography variant="body2" sx={{ mb: 5 }}>
-              Don’t have an account? {'  '} 
-            <Button variant='text' onClick={handleClick}>
-            Register Now
-            </Button></Typography>
-
             <Divider sx={{ my: 3 }}>
-              <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                OR
-              </Typography>
             </Divider>
 
             <LoginForm />
