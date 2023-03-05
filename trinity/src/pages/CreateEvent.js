@@ -72,7 +72,7 @@ function CreateEvent() {
         console.log(candidateNames);
         console.log(candidateKeys);
         console.log(document.getElementsByName("Name")[0].value);
-        const res = await ballot.methods.createEvent(document.getElementsByName("Name")[0].value, document.getElementsByName("describe")[0].value,document.getElementsByName("names")[0].value,time, 50, candidateNames, candidateKeys, 2115, value).send({ from: account });
+        const res = await ballot.methods.createEvent(document.getElementsByName("Name")[0].value, document.getElementsByName("describe")[0].value,document.getElementsByName("names")[0].value,time, parseInt(document.getElementsByName("votes")[0].value), candidateNames, candidateKeys, document.getElementsByName("key")[0].value, value).send({ from: account });
         console.log(res);
 
       } else {
@@ -136,6 +136,16 @@ function CreateEvent() {
             />
           </RadioGroup>
         </FormControl>
+        <TextField
+          name="votes"
+          label="expected votes"
+          id="outlined-required"
+        />
+         <TextField
+          name="key"
+          label="event key"
+          id="outlined-required"
+        />
         <Typography>
         {t("candidate_name")}
           <Button onClick={handleClick}>
