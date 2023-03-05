@@ -42,11 +42,6 @@ def home():
     return "Hello World!"
 
 
-@app.route('/checkstatus', methods=['POST'])
-def check_status():
-    return "Hello World!"
-
-
 @app.route('/sendotp', methods=["GET"])
 def send_otp():
     mobile = request.args.get('mobile')
@@ -59,12 +54,11 @@ def send_otp():
 def get_details():
     con = conn.connect(host='localhost', database='trinity', user='root',
                        password='vashz151', charset='utf8', port=3306)
-    sql = 'select * from register where mobile=%s'
+    sql = 'select * from register where accno=%s'
     cursor = con.cursor()
-    mobile = request.args.get('mobile')
-    cursor.execute(sql, (mobile,))
+    accno = request.args.get('accno')
+    cursor.execute(sql, (accno,))
     result = cursor.fetchall()
-    print(result)
     cursor.close()
     con.close()
     return jsonify({'name': result[0][0], 'mobile': result[0][2]})
@@ -75,9 +69,10 @@ def register():
     con = conn.connect(host='localhost', database='trinity', user='root',
                        password='vashz151', charset='utf8', port=3306)
     cursor = con.cursor()
-    sql = 'insert into register values(%s,%s,%s)'
+    sql = 'insert into register values(%s,%s,%s,%s)'
     name = request.args.get("name")
     mobile = request.args.get("mobile")
+    accno = request.args.get("accno")
     video_capture = cv2.VideoCapture(0)
     ret, frame = video_capture.read()
     small_frame = cv2.resize(frame, (0, 0), fx=0.25, fy=0.25)
@@ -96,7 +91,7 @@ def register():
     encoding = ""
     for i in face_encodings:
         encoding += str(i)+","
-    li = [name, encoding, mobile]
+    li = [name, encoding, mobile, accno]
     value = tuple(li)
     cursor.execute(sql, value)
     con.commit()
