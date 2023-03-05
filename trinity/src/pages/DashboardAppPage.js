@@ -6,6 +6,8 @@ import { Grid, Container, Typography } from "@mui/material";
 // components
 import Iconify from "../components/iconify";
 import { useTranslation } from "react-i18next";
+import { useState, useEffect } from "react";
+import Ballot from "../truffle_abis/Ballot.json";
 
 // sections
 import {
@@ -23,8 +25,34 @@ import {
 // ----------------------------------------------------------------------
 
 export default function DashboardAppPage() {
+  const[balance, setBalance] = useState("")
+  const[numeve, setNumeve] = useState(0)
   const theme = useTheme();
   const { t } = useTranslation();
+
+  const handleSubmit = async () => {
+    // create event by the owner
+    const account = localStorage.getItem("id");
+    const networkId = await window.ethereum.request({
+      method: "net_version",
+    });
+    console.log("networkId: ", networkId);
+    const networkData = await Ballot.networks[networkId];
+    if (networkData) {
+      const ballot = new window.web3.eth.Contract(
+        Ballot.abi,
+        networkData.address
+      );
+        const len = await ballot.methods.getEventLength().call();
+       setNumeve(len)
+    }
+  };
+
+  useEffect(() => {
+    let bl = localStorage.getItem("balance");
+    setBalance(bl.slice(0,8))
+    handleSubmit()
+  }, [])
   return (
     <>
       <Helmet>
@@ -40,7 +68,7 @@ export default function DashboardAppPage() {
           <Grid item xs={12} sm={6} md={3}>
             <AppWidgetSummary
               title={t("number_of_elections")}
-              total={714}
+              total={numeve}
               icon={"ant-design:dollar-circle-twotone"}
             />
           </Grid>
@@ -48,7 +76,7 @@ export default function DashboardAppPage() {
           <Grid item xs={12} sm={6} md={3}>
             <AppWidgetSummary
               title={t("total_users")}
-              total={1352831}
+              total={3}
               color="info"
               icon={"ant-design:user-outlined"}
             />
@@ -56,8 +84,8 @@ export default function DashboardAppPage() {
 
           <Grid item xs={12} sm={6} md={3}>
             <AppWidgetSummary
-              title="Item Orders"
-              total={1723315}
+              title={t("wallet_balance")}
+              total={balance}
               color="warning"
               icon={"ant-design:gitlab-filled"}
             />
@@ -74,7 +102,7 @@ export default function DashboardAppPage() {
 
           <Grid item xs={12} md={6} lg={8}>
             <AppWebsiteVisits
-              title="Website Visits"
+              title="Elections taken Place"
               subheader="(+43%) than last year"
               chartLabels={[
                 "01/01/2003",
@@ -91,19 +119,19 @@ export default function DashboardAppPage() {
               ]}
               chartData={[
                 {
-                  name: "Team A",
+                  name: "Single choice voting",
                   type: "column",
                   fill: "solid",
                   data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30],
                 },
                 {
-                  name: "Team B",
+                  name: "Approval choice voting",
                   type: "area",
                   fill: "gradient",
                   data: [44, 55, 41, 67, 22, 43, 21, 41, 56, 27, 43],
                 },
                 {
-                  name: "Team C",
+                  name: "No votes",
                   type: "line",
                   fill: "solid",
                   data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39],
@@ -114,12 +142,12 @@ export default function DashboardAppPage() {
 
           <Grid item xs={12} md={6} lg={4}>
             <AppCurrentVisits
-              title="Current Visits"
+              title="Winning Candidates"
               chartData={[
-                { label: "America", value: 4344 },
-                { label: "Asia", value: 5435 },
-                { label: "Europe", value: 1443 },
-                { label: "Africa", value: 4443 },
+                { label: "Sakshi", value: 4344 },
+                { label: "Yash", value: 5435 },
+                { label: "Vashisth", value: 1443 },
+                { label: "Keyur", value: 4443 },
               ]}
               chartColors={[
                 theme.palette.primary.main,
@@ -132,7 +160,7 @@ export default function DashboardAppPage() {
 
           <Grid item xs={12} md={6} lg={8}>
             <AppNewsUpdate
-              title="News Update"
+              title="Elections update"
               list={[...Array(5)].map((_, index) => ({
                 id: faker.datatype.uuid(),
                 title: faker.name.jobTitle(),
@@ -145,15 +173,15 @@ export default function DashboardAppPage() {
 
           <Grid item xs={12} md={6} lg={4}>
             <AppOrderTimeline
-              title="Order Timeline"
+              title="Election Timeline"
               list={[...Array(5)].map((_, index) => ({
                 id: faker.datatype.uuid(),
                 title: [
-                  "1983, orders, $4220",
-                  "12 Invoices have been paid",
-                  "Order #37745 from September",
-                  "New order placed #XF-2356",
-                  "New order placed #XF-2346",
+                  "Office Election Started",
+                  "Yash and Sakshi are candidates",
+                  "People voted in favor of Sakshi",
+                  "Sakshi becomes manager",
+                  "Wallet price drops by 10 eths",
                 ][index],
                 type: `order${index + 1}`,
                 time: faker.date.past(),

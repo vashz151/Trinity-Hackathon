@@ -114,9 +114,12 @@ export default function ShopProductCard({ productts, status }) {
 
   const { t } = useTranslation();
   return (
-    <Card sx={{ minWidth: "300px" }} elevation={5}>
-      <CardHeader
-        avatar={<Avatar aria-label="avatar" src={account.photoURL}></Avatar>}
+    <Card sx={{minWidth:'300px'}} elevation={5}>
+       <CardHeader
+        avatar={
+          <Avatar aria-label="avatar" src={account.photoURL}>
+          </Avatar>
+        }
         action={
           <IconButton aria-label="settings">
             <DeleteIcon />
@@ -185,5 +188,6 @@ export default function ShopProductCard({ productts, status }) {
         {/* </Modal> */}
       </Stack>
     </Card>
+    </Grid>
   );
 }
