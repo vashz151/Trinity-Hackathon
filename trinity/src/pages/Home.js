@@ -18,13 +18,19 @@ function Home() {
     console.log("balance: ", balance);
     const networkId = await window.web3.eth.net.getId();
     const networkData = Ballot.networks[networkId];
+    console.log("networkData: ", networkData);
     if (networkData) {
       const ballot = new window.web3.eth.Contract(
         Ballot.abi,
         networkData.address
       );
+      console.log("ballot: ", ballot);
+      // get owner
       const owner = await ballot.methods.owner().call();
+      console.log("owner: ", owner.toUpperCase());
+      localStorage.setItem("balance", balance);
       if (owner.toUpperCase() === accounts[0].toUpperCase()) {
+        console.log("ownerdfafs: ", owner);
         localStorage.setItem("type", "owner");
         localStorage.setItem("id", owner);
         navigate("/dashboard/app");

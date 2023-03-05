@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 // @mui
 import { Stack, TextField, Typography, Button } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
+import Ballot from "../truffle_abis/Ballot.json";
 // components
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
@@ -18,6 +19,13 @@ import DeleteIcon from "@mui/icons-material/Delete";
 function CreateEvent() {
   const { t } = useTranslation();
   const [count, setCount] = useState(0);
+  const[time, setTime] = useState("12/03/2023");
+  const [value, setValue] = React.useState("approval");
+
+
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  };
   const [candidate, setCandidate] = useState([
     {
       name: "",
@@ -34,6 +42,42 @@ function CreateEvent() {
       },
     ]);
     candidate.pop();
+  };
+
+  const handleSubmit = async () => {
+    // create event by the owner
+    const account = localStorage.getItem("id");
+    const networkId = await window.ethereum.request({
+      method: "net_version",
+    });
+    console.log("networkId: ", networkId);
+    const networkData = Ballot.networks[networkId];
+    if (networkData) {
+      const ballot = new window.web3.eth.Contract(
+        Ballot.abi,
+        networkData.address
+      );
+      const owner = await ballot.methods.owner().call();
+      if (owner.toUpperCase() === account.toUpperCase()) {
+        // create array of candidate names in bytes32
+        const candidateNames = [];
+        for (let i = 0; i < candidate.length; i++) {
+          candidateNames.push(window.web3.utils.asciiToHex(candidate[i].name));
+        }
+        const candidateKeys = [];
+        for (let i = 0; i < candidate.length; i++) {
+          candidateKeys.push(parseInt(candidate[i].key));
+        }
+        console.log(candidateNames);
+        console.log(candidateKeys);
+        console.log(document.getElementsByName("Name")[0].value);
+        const res = await ballot.methods.createEvent(document.getElementsByName("Name")[0].value, document.getElementsByName("describe")[0].value,document.getElementsByName("names")[0].value,time, 50, candidateNames, candidateKeys, 2115, value).send({ from: account });
+        console.log(res);
+
+      } else {
+        alert("You are not the owner");
+      }
+    }
   };
 
   const handleDelete = (name, key) => {
@@ -56,7 +100,7 @@ function CreateEvent() {
           id="outlined-required"
         ></TextField>
         <TextField
-          name="name"
+          name="names"
           label={t("skateholder_name")}
           id="outlined-required"
         />
@@ -73,18 +117,21 @@ function CreateEvent() {
           </FormLabel>
           <RadioGroup
             aria-labelledby="demo-radio-buttons-group-label"
-            defaultValue="female"
             name="radio-buttons-group"
+            value={value}
+            onChange={handleChange}
           >
             <FormControlLabel
-              value="female"
+              value="approval"
               control={<Radio />}
               label={t("approval")}
+              name="type"
             />
             <FormControlLabel
-              value="male"
+              value="single_choice"
               control={<Radio />}
               label={t("single_choice")}
+              name="type"
             />
           </RadioGroup>
         </FormControl>
@@ -126,7 +173,7 @@ function CreateEvent() {
       </Stack>
       <br />
       <Box sx={{ display: "flex", justifyContent: "center" }}>
-        <LoadingButton size="large" variant="contained">
+        <LoadingButton size="large" variant="contained" onClick={handleSubmit}>
           {t("create_event")}
         </LoadingButton>
       </Box>
