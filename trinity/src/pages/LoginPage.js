@@ -1,23 +1,20 @@
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from "react-helmet-async";
 // @mui
-import { styled } from '@mui/material/styles';
-import { Link, Container, Typography, Divider, Stack, Button } from '@mui/material';
+import { styled } from "@mui/material/styles";
+import { Container, Typography } from "@mui/material";
 // hooks
-import useResponsive from '../hooks/useResponsive';
+import useResponsive from "../hooks/useResponsive";
 // components
-import Logo from '../components/logo';
-import Iconify from '../components/iconify';
+import Logo from "../components/logo";
 // sections
-import { LoginForm } from '../sections/auth/login';
-import { useNavigate } from 'react-router-dom';
-import Lottie from 'react-lottie';
-import animationData from '../lottie/38435-register.json';
-import LanguagePopover from '../layouts/dashboard/header/LanguagePopover';
+import Lottie from "react-lottie";
+import animationData from "../lottie/38435-register.json";
+import VerifyOtp from "./VerifyOtp";
 // ----------------------------------------------------------------------
 
-const StyledRoot = styled('div')(({ theme }) => ({
-  [theme.breakpoints.up('md')]: {
-    display: 'flex',
+const StyledRoot = styled("div")(({ theme }) => ({
+  [theme.breakpoints.up("md")]: {
+    display: "flex",
   },
 }));
 
@@ -26,36 +23,33 @@ const defaultOptions = {
   autoplay: true,
   animationData: animationData,
   rendererSettings: {
-    preserveAspectRatio: "xMidYMid slice"
-  }
+    preserveAspectRatio: "xMidYMid slice",
+  },
 };
-const StyledSection = styled('div')(({ theme }) => ({
-  width: '100%',
+const StyledSection = styled("div")(({ theme }) => ({
+  width: "100%",
   maxWidth: 650,
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
   boxShadow: theme.customShadows.card,
   backgroundColor: theme.palette.background.default,
 }));
 
-const StyledContent = styled('div')(({ theme }) => ({
+const StyledContent = styled("div")(({ theme }) => ({
   maxWidth: 650,
-  margin: 'auto',
-  minHeight: '100vh',
-  display: 'flex',
-  justifyContent: 'center',
-  flexDirection: 'column',
+  margin: "auto",
+  minHeight: "100vh",
+  display: "flex",
+  justifyContent: "center",
+  flexDirection: "column",
   padding: theme.spacing(12, 0),
 }));
-
 
 // ----------------------------------------------------------------------
 
 export default function LoginPage() {
-  const mdUp = useResponsive('up', 'md');
-  const navigate = useNavigate();
-  const handleClick = () => navigate('/register');
+  const mdUp = useResponsive("up", "md");
   return (
     <>
       <Helmet>
@@ -65,7 +59,7 @@ export default function LoginPage() {
       <StyledRoot>
         <Logo
           sx={{
-            position: 'fixed',
+            position: "fixed",
             top: { xs: 16, sm: 24, md: 40 },
             left: { xs: 16, sm: 24, md: 40 },
           }}
@@ -76,18 +70,13 @@ export default function LoginPage() {
             <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
               Welcome to MyVote
             </Typography>
-            <Lottie 
-	    options={defaultOptions}
-        height={400}
-        width={400}
-      />
+            <Lottie options={defaultOptions} height={400} width={400} />
           </StyledSection>
         )}
 
-        <Container maxWidth="sm">
+        <Container maxWidth="sm3">
           <StyledContent>
-          {/* <LanguagePopover/> */}
-            <Typography variant="h4" gutterBottom>
+            {/* <Typography variant="h4" gutterBottom>
               Sign in to VoteRight
             </Typography>
             <Typography variant="body2" sx={{ mb: 5 }}>
@@ -100,9 +89,10 @@ export default function LoginPage() {
               <Typography variant="body2" sx={{ color: 'text.secondary' }}>
                 OR
               </Typography>
-            </Divider>
+            </Divider> */}
 
-            <LoginForm />
+            {/* <LoginForm /> */}
+            <VerifyOtp />
           </StyledContent>
         </Container>
       </StyledRoot>

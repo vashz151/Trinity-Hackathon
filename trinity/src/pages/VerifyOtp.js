@@ -1,6 +1,5 @@
 import { Button, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import { CircularProgress } from "@mui/material";
 import { getDetail } from "../api/FetchDetail";
@@ -92,21 +91,46 @@ function VerifyOtp() {
   }, [time]);
   return (
     <div>
-      <Grid
-        container
-        direction="row"
-        justifyContent="center"
-        alignItems="center"
-        sx={{ marginTop: "50px", width: "96%", backgroundColor: "white" }}
+      <Card
+        sx={{
+          width: "80%",
+          height: "550px",
+          backgroundColor: "white",
+          border: "none",
+        }}
       >
-        <Card
+        <Typography
+          variant="h4"
           sx={{
-            width: "40%",
-            height: "550px",
-            backgroundColor: "white",
-            border: "none",
+            fontWeight: "bold",
+            marginTop: "20px",
+            display: "flex",
+            justifyContent: "center",
           }}
         >
+          <img
+            src={Icon}
+            style={{
+              height: "90px",
+              width: "100px",
+              display: "block",
+            }}
+            alt="icon"
+          />
+        </Typography>
+        <Typography
+          variant="h4"
+          sx={{
+            fontWeight: "bold",
+            marginTop: "20px",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          Please Check Your Mobile!
+          <br />
+        </Typography>
+        {loading && (
           <Typography
             variant="h4"
             sx={{
@@ -116,134 +140,101 @@ function VerifyOtp() {
               justifyContent: "center",
             }}
           >
-            <img
-              src={Icon}
-              style={{
-                height: "90px",
-                width: "100px",
-                display: "block",
-              }}
-              alt="icon"
-            />
-          </Typography>
-          <Typography
-            variant="h4"
-            sx={{
-              fontWeight: "bold",
-              marginTop: "20px",
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
-            Please Check Your Mobile!
+            {loading && <CircularProgress />}
             <br />
           </Typography>
-          {loading && (
-            <Typography
-              variant="h4"
-              sx={{
-                fontWeight: "bold",
-                marginTop: "20px",
-                display: "flex",
-                justifyContent: "center",
+        )}
+        <br />
+        <Typography
+          variant="p"
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            marginBottom: "40px",
+            padding: "15px",
+            marginLeft: "20px",
+            marginRight: "20px",
+          }}
+        >
+          We have message a 6-digit confirmation code to {mobile}, please enter
+          the code in below box to verify your mobile.{" "}
+        </Typography>
+        <input
+          type="text"
+          maxLength="1"
+          style={{
+            width: "56px",
+            height: "56px",
+            marginRight: "10px",
+            marginLeft: "40px",
+            padding: "20px",
+            borderRadius: "8px",
+            fontSize: "20px",
+          }}
+        />
+        <input type="text" disabled maxLength="1" style={inputStyle} />
+        <input type="text" disabled maxLength="1" style={inputStyle} />
+        <input type="text" disabled maxLength="1" style={inputStyle} />
+        <input type="text" disabled maxLength="1" style={inputStyle} />
+        <input type="text" disabled maxLength="1" style={inputStyle} />
+        <br />
+        <br />
+        <Button
+          type="submit"
+          color="inherit"
+          variant="contained"
+          onClick={verifyOtp}
+          sx={{
+            width: "60%",
+            padding: "10px",
+            marginLeft: "110px",
+            marginBottom: "38px",
+            color: "black",
+            backgroundColor: "#9D00FF",
+            marginTop: "20px",
+            textAlign: "center",
+          }}
+        >
+          Verify
+        </Button>
+        <br />
+        {time > 0 && (
+          <Typography sx={{ marginLeft: "70px", marginBottom: "20px" }}>
+            Didn't receive the code?{" "}
+            <span
+              color="inherit"
+              variant="contained"
+              style={{
+                textAlign: "center",
+                marginBottom: "20px",
+                color: "#9D00FF",
+              }}
+              tabIndex="-1"
+            >
+              Resend
+            </span>
+            &nbsp;Code in <span>{time} seconds</span>{" "}
+          </Typography>
+        )}
+        {time === 0 && (
+          <Typography sx={{ marginLeft: "120px", marginBottom: "20px" }}>
+            Didn't receive the code?{" "}
+            <span
+              onClick={handleOtp}
+              color="inherit"
+              variant="contained"
+              style={{
+                textAlign: "center",
+                marginBottom: "20px",
+                color: "#9D00FF",
               }}
             >
-              {loading && <CircularProgress />}
-              <br />
-            </Typography>
-          )}
-          <br />
-          <Typography
-            variant="p"
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              marginBottom: "40px",
-              padding: "15px",
-              marginLeft: "20px",
-              marginRight: "20px",
-            }}
-          >
-            We have message a 6-digit confirmation code to {mobile} , please
-            enter the code in below box to verify your mobile.{" "}
+              Resend
+            </span>
+            &nbsp;Code
           </Typography>
-          <input
-            type="text"
-            maxLength="1"
-            style={{
-              width: "56px",
-              height: "56px",
-              marginRight: "10px",
-              marginLeft: "40px",
-              padding: "20px",
-              borderRadius: "8px",
-              fontSize: "20px",
-            }}
-          />
-          <input type="text" disabled maxLength="1" style={inputStyle} />
-          <input type="text" disabled maxLength="1" style={inputStyle} />
-          <input type="text" disabled maxLength="1" style={inputStyle} />
-          <input type="text" disabled maxLength="1" style={inputStyle} />
-          <input type="text" disabled maxLength="1" style={inputStyle} />
-          <br />
-          <br />
-          <Button
-            type="submit"
-            color="inherit"
-            variant="contained"
-            onClick={verifyOtp}
-            sx={{
-              width: "60%",
-              padding: "10px",
-              marginLeft: "110px",
-              marginBottom: "38px",
-              color: "black",
-              backgroundColor: "rgb(0, 171, 85)",
-              marginTop: "20px",
-              textAlign: "center",
-            }}
-          >
-            Verify
-          </Button>
-          <br />
-          {time > 0 && (
-            <Typography sx={{ marginLeft: "70px", marginBottom: "20px" }}>
-              Didn't receive the code?{" "}
-              <span
-                color="inherit"
-                variant="contained"
-                style={{
-                  textAlign: "center",
-                  marginBottom: "20px",
-                  color: "rgb(0, 171, 85)",
-                }}
-                tabIndex="-1"
-              >
-                Resend
-              </span>
-              &nbsp;Code in <span>{time} seconds</span>{" "}
-            </Typography>
-          )}
-          {time === 0 && (
-            <Typography sx={{ marginLeft: "120px", marginBottom: "20px" }}>
-              Didn't receive the code?{" "}
-              <span
-                onClick={handleOtp}
-                color="inherit"
-                variant="contained"
-                style={{
-                  textAlign: "center",
-                  marginBottom: "20px",
-                  color: "rgb(0, 171, 85)",
-                }}
-              >
-                Resend
-              </span>
-              &nbsp;Code
-            </Typography>
-          )}
-        </Card>
-      </Grid>
+        )}
+      </Card>
     </div>
   );
 }
