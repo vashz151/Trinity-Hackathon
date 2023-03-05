@@ -6,7 +6,6 @@ contract Ballot{
     address public owner;
     struct Voter{
         uint weight;
-        bool voted;
     }
     // struct for a proposal
     struct Candidate{
@@ -24,14 +23,19 @@ contract Ballot{
         uint expectedVotes;
         uint totalVotes;
         uint eventId;
+        bool isAlive;
 
     }
 
     event EventCreated(string name, string endTime, string typ, string desc, string organiser, uint expectedVotes, uint totalVotes, uint eventId);
 
     event voteCasted(uint eventId, uint candidateId, uint voteCount, uint totalVotes);
+
+    event winner(string eventName, bytes32 name, uint voteCount);
     // mapping of voters
     mapping(address => Voter) voters;
+
+    mapping(address => Event) hasVoted;
 
     // array of proposals
     mapping(uint => Candidate []) listCandidates;
@@ -53,7 +57,8 @@ contract Ballot{
             typ: typ,
             eventId: evenId,
             desc: desc, 
-            organiser: organiser
+            organiser: organiser,
+            isAlive: true
         }));
 
         emit EventCreated(_name, _endTime, typ, desc, organiser, _expectedVotes, 0, evenId);
@@ -103,36 +108,45 @@ contract Ballot{
     function approvalVoting(uint _eventId, uint [] memory _candidateId) public{
         if(voters[msg.sender].weight == 0){
             voters[msg.sender] = Voter({
-                weight: 1,
-                voted: false
+                weight: 1
             });
         }
+        if(hasVoted[msg.sender].eventId == _eventId){
+            revert("You have already voted for this event");
+        }
         Voter storage sender = voters[msg.sender];
-        require(!sender.voted, "Already voted");
-        sender.voted = true;
         events[_eventId].totalVotes += 1;
         for(uint i = 0; i < _candidateId.length; i++){
             msg.sender.transfer(0.5 ether);
             listCandidates[_eventId][_candidateId[i]].voteCount += 1;
         }
+        hasVoted[msg.sender] = events[_eventId];
     }
 
     function singleVoting(uint _eventId, uint _candidateId) public{
         if(voters[msg.sender].weight == 0){
             voters[msg.sender] = Voter({
-                weight: 1,
-                voted: false
+                weight: 1
             });
         }
+        if(hasVoted[msg.sender].eventId == _eventId){
+            revert("You have already voted for this event");
+        }
         Voter storage sender = voters[msg.sender];
-        require(!sender.voted, "Already voted");
-        sender.voted = true;
         events[_eventId].totalVotes += 1;
         msg.sender.transfer(0.5 ether);
         listCandidates[_eventId][_candidateId].voteCount += 1;
         emit voteCasted(_eventId, _candidateId, listCandidates[_eventId][_candidateId].voteCount, events[_eventId].totalVotes);
+        hasVoted[msg.sender] = events[_eventId];
     }
 
+    function isAllowedToVote(address _voter, uint _eventId) public view returns(bool){
+        if(hasVoted[_voter].eventId == _eventId){
+            return false;
+        }
+        return true;
+    }
+    
     function isOwner () public view returns(bool){
         return msg.sender == owner;
     }
@@ -141,5 +155,24 @@ contract Ballot{
         return owner;
     }
 
-
+    function endAndDeclareWinner(uint _eventId) public returns(bytes32){
+        require(msg.sender == owner, "Only the owner can end the event");
+        uint max = 0;
+        uint index = 0;
+        for(uint i = 0; i < listCandidates[_eventId].length; i++){
+            if(listCandidates[_eventId][i].voteCount > max){
+                max = listCandidates[_eventId][i].voteCount;
+                index = i;
+            }
+        }
+        uint i = 0;
+        for(i; i < events.length; i++){
+            if(events[i].eventId == _eventId){
+                events[i].isAlive = false;
+                break;
+            }
+        }
+        emit winner(events[i].name, listCandidates[_eventId][index].name, listCandidates[_eventId][index].voteCount);
+        return listCandidates[_eventId][index].name;
+    }
 }

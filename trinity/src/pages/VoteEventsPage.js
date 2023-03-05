@@ -43,6 +43,15 @@ export default function VoteEventsPage() {
             const res = await ballot.methods.getEventByIndex(i).call();
             temp.push(res);
         }
+        const canlen = await ballot.methods.getCandidatesLength(2233).call();
+        console.log(canlen);
+        for(let i = 0; i < canlen; i++){
+            const res = await ballot.methods.getCandidate(2233, i).call();
+            // covert res['name'] bytes32 to string
+            let name = await window.web3.utils.hexToUtf8(res['name']);
+            console.log(name);
+            console.log(res);
+        }
         setData(temp);
         setLoading(false);
     }
