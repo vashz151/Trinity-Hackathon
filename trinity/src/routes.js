@@ -12,6 +12,7 @@ import DashboardAppPage from "./pages/DashboardAppPage";
 import RegisterPage from "./pages/RegisterPage";
 import CreateEvent from "./pages/CreateEvent";
 import Home from "./pages/Home";
+import VerifyOtp from "./pages/VerifyOtp";
 // ----------------------------------------------------------------------
 
 export default function Router() {
@@ -39,6 +40,10 @@ export default function Router() {
     {
       path: "Register",
       element: <RegisterPage />,
+    },
+    {
+      path: "verify",
+      element: <VerifyOtp />,
     },
     {
       element: <SimpleLayout />,

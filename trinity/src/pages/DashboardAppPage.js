@@ -1,12 +1,11 @@
-import { Helmet } from 'react-helmet-async';
-import { faker } from '@faker-js/faker';
+import { Helmet } from "react-helmet-async";
+import { faker } from "@faker-js/faker";
 // @mui
-import { useTheme } from '@mui/material/styles';
-import { Grid, Container, Typography } from '@mui/material';
+import { useTheme } from "@mui/material/styles";
+import { Grid, Container, Typography } from "@mui/material";
 // components
-import Iconify from '../components/iconify';
-import { useTranslation } from 'react-i18next';
-
+import Iconify from "../components/iconify";
+import { useTranslation } from "react-i18next";
 
 // sections
 import {
@@ -19,7 +18,7 @@ import {
   AppWidgetSummary,
   AppCurrentSubject,
   AppConversionRates,
-} from '../sections/@dashboard/app';
+} from "../sections/@dashboard/app";
 
 // ----------------------------------------------------------------------
 
@@ -39,19 +38,38 @@ export default function DashboardAppPage() {
 
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title={t("number_of_elections")} total={714} icon={'ant-design:dollar-circle-twotone'} />
+            <AppWidgetSummary
+              title={t("number_of_elections")}
+              total={714}
+              icon={"ant-design:dollar-circle-twotone"}
+            />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title={t("total_users")} total={1352831} color="info" icon={'ant-design:user-outlined'} />
+            <AppWidgetSummary
+              title={t("total_users")}
+              total={1352831}
+              color="info"
+              icon={"ant-design:user-outlined"}
+            />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="Item Orders" total={1723315} color="warning" icon={'ant-design:gitlab-filled'} />
+            <AppWidgetSummary
+              title="Item Orders"
+              total={1723315}
+              color="warning"
+              icon={"ant-design:gitlab-filled"}
+            />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="Bug Reports" total={234} color="error" icon={'ant-design:gold-filled'} />
+            <AppWidgetSummary
+              title="Bug Reports"
+              total={234}
+              color="error"
+              icon={"ant-design:gold-filled"}
+            />
           </Grid>
 
           <Grid item xs={12} md={6} lg={8}>
@@ -59,35 +77,35 @@ export default function DashboardAppPage() {
               title="Website Visits"
               subheader="(+43%) than last year"
               chartLabels={[
-                '01/01/2003',
-                '02/01/2003',
-                '03/01/2003',
-                '04/01/2003',
-                '05/01/2003',
-                '06/01/2003',
-                '07/01/2003',
-                '08/01/2003',
-                '09/01/2003',
-                '10/01/2003',
-                '11/01/2003',
+                "01/01/2003",
+                "02/01/2003",
+                "03/01/2003",
+                "04/01/2003",
+                "05/01/2003",
+                "06/01/2003",
+                "07/01/2003",
+                "08/01/2003",
+                "09/01/2003",
+                "10/01/2003",
+                "11/01/2003",
               ]}
               chartData={[
                 {
-                  name: 'Team A',
-                  type: 'column',
-                  fill: 'solid',
+                  name: "Team A",
+                  type: "column",
+                  fill: "solid",
                   data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30],
                 },
                 {
-                  name: 'Team B',
-                  type: 'area',
-                  fill: 'gradient',
+                  name: "Team B",
+                  type: "area",
+                  fill: "gradient",
                   data: [44, 55, 41, 67, 22, 43, 21, 41, 56, 27, 43],
                 },
                 {
-                  name: 'Team C',
-                  type: 'line',
-                  fill: 'solid',
+                  name: "Team C",
+                  type: "line",
+                  fill: "solid",
                   data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39],
                 },
               ]}
@@ -98,10 +116,10 @@ export default function DashboardAppPage() {
             <AppCurrentVisits
               title="Current Visits"
               chartData={[
-                { label: 'America', value: 4344 },
-                { label: 'Asia', value: 5435 },
-                { label: 'Europe', value: 1443 },
-                { label: 'Africa', value: 4443 },
+                { label: "America", value: 4344 },
+                { label: "Asia", value: 5435 },
+                { label: "Europe", value: 1443 },
+                { label: "Africa", value: 4443 },
               ]}
               chartColors={[
                 theme.palette.primary.main,
@@ -131,11 +149,11 @@ export default function DashboardAppPage() {
               list={[...Array(5)].map((_, index) => ({
                 id: faker.datatype.uuid(),
                 title: [
-                  '1983, orders, $4220',
-                  '12 Invoices have been paid',
-                  'Order #37745 from September',
-                  'New order placed #XF-2356',
-                  'New order placed #XF-2346',
+                  "1983, orders, $4220",
+                  "12 Invoices have been paid",
+                  "Order #37745 from September",
+                  "New order placed #XF-2356",
+                  "New order placed #XF-2346",
                 ][index],
                 type: `order${index + 1}`,
                 time: faker.date.past(),
