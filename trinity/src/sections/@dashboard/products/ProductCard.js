@@ -188,6 +188,5 @@ export default function ShopProductCard({ productts, status }) {
         {/* </Modal> */}
       </Stack>
     </Card>
-    </Grid>
   );
 }
