@@ -22,6 +22,7 @@ const StyledProductImg = styled("img")({
   height: "100%",
   objectFit: "cover",
   position: "absolute",
+  opacity:'0.8',
 });
 
 // ----------------------------------------------------------------------

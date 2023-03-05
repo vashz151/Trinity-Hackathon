@@ -17,16 +17,16 @@ const GREY = {
 };
 
 const PRIMARY = {
-  lighter: '#D1E9FC',
-  light: '#76B0F1',
+  lighter: '#DFFFD8',
+  light: '#C0EEE4',
   main: '#2065D1',
-  dark: '#103996',
+  dark: '#3A98B9',
   darker: '#061B64',
   contrastText: '#fff',
 };
 
 const SECONDARY = {
-  lighter: '#D6E4FF',
+  lighter: '#E5E0FF',
   light: '#84A9FF',
   main: '#3366FF',
   dark: '#1939B7',
@@ -79,19 +79,19 @@ const palette = {
   warning: WARNING,
   error: ERROR,
   grey: GREY,
-  divider: alpha(GREY[500], 0.24),
+  divider: alpha(GREY[700], 0.24),
   text: {
-    primary: GREY[800],
-    secondary: GREY[600],
+    primary: GREY[900],
+    secondary: GREY[700],
     disabled: GREY[500],
   },
   background: {
     paper: '#fff',
-    default: GREY[100],
+    default: GREY[200],
     neutral: GREY[200],
   },
   action: {
-    active: GREY[600],
+    active: GREY[700],
     hover: alpha(GREY[500], 0.08),
     selected: alpha(GREY[500], 0.16),
     disabled: alpha(GREY[500], 0.8),

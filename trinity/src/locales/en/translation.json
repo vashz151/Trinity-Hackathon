@@ -13,7 +13,10 @@
     "ongoing_elections":"Ongoing Elections",
     "number_of_elections":"Number of Elections",
     "total_users": "Total Users",
-    "vote":"VOTE"
+    "vote":"VOTE",
+    "candidate_name":" Enter Candidate Name and Key",
+    "candidate":"candidate name",
+    "unique_key":"unique key"
     
   }
   

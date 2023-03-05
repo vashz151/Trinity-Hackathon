@@ -26,6 +26,7 @@ import { useTranslation } from "react-i18next";
 import EventCandidate from "../components/eventCandidate";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import DeleteIcon from "@mui/icons-material/Delete";
+
 function CreateEvent() {
   const { t } = useTranslation();
   const [count, setCount] = useState(0);
@@ -95,17 +96,17 @@ function CreateEvent() {
           </RadioGroup>
         </FormControl>
         <Typography>
-          Enter Candidate Name and Key
+        {t("candidate_name")}
           <Button onClick={handleClick}>
             <AddCircleIcon />
           </Button>
         </Typography>
-
+        
         {candidate.map((item, index) => (
           <Box key={index} sx={{ display: "flex" }}>
             <TextField
               id="outlined-basic"
-              label="Candidate Name"
+              label={t("candidate")}
               variant="outlined"
               onChange={(e) => {
                 item.name = e.target.value;
@@ -114,7 +115,7 @@ function CreateEvent() {
             />
             <TextField
               id="outlined-basic"
-              label="Unique Key"
+              label={t("unique_key")}
               variant="outlined"
               onChange={(e) => {
                 item.key = e.target.value;
