@@ -3,6 +3,15 @@ import Button from "@mui/material/Button";
 import Web3 from "web3";
 import Ballot from "../truffle_abis/Ballot.json";
 import { useNavigate } from "react-router-dom";
+import {
+	HeroContainer,
+	HeroContent,
+	HeroItems,
+	HeroH1,
+	HeroP,
+	HeroBtn,
+} from './HeroElements';
+
 function Home() {
   const navigate = useNavigate();
   const loadBlockchainData = async () => {
@@ -60,11 +69,26 @@ function Home() {
     }
   };
 
+  const [isOpen, setIsOpen] = React.useState(false);
+
+	const toggle = () => {
+		setIsOpen(!isOpen);
+	};
+
   return (
     <div>
-      <Button variant="contained" onClick={loadWeb3}>
+
+<HeroContainer>
+			<HeroContent>
+				<HeroItems>
+					<HeroH1>Welcome to MyVote</HeroH1>
+					<HeroP>Ensures your right to vote</HeroP>
+					<Button variant="contained" onClick={loadWeb3}>
         Connect to Wallet
       </Button>
+				</HeroItems>
+			</HeroContent>
+		</HeroContainer>
     </div>
   );
 }

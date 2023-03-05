@@ -71,6 +71,7 @@ const Logo = forwardRef(({ disabledLink = false, sx, ...other }, ref) => {
           />
         </g>
       </svg>
+     
     </Box>
   );
 
