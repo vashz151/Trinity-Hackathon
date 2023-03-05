@@ -16,6 +16,7 @@ import FormLabel from "@mui/material/FormLabel";
 import { useTranslation } from "react-i18next";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import DeleteIcon from "@mui/icons-material/Delete";
+
 function CreateEvent() {
   const { t } = useTranslation();
   const [count, setCount] = useState(0);
@@ -71,7 +72,7 @@ function CreateEvent() {
         console.log(candidateNames);
         console.log(candidateKeys);
         console.log(document.getElementsByName("Name")[0].value);
-        const res = await ballot.methods.createEvent(document.getElementsByName("Name")[0].value, document.getElementsByName("describe")[0].value,document.getElementsByName("names")[0].value,time, 50, candidateNames, candidateKeys, 2115, value).send({ from: account });
+        const res = await ballot.methods.createEvent(document.getElementsByName("Name")[0].value, document.getElementsByName("describe")[0].value,document.getElementsByName("names")[0].value,time, parseInt(document.getElementsByName("votes")[0].value), candidateNames, candidateKeys, document.getElementsByName("key")[0].value, value).send({ from: account });
         console.log(res);
 
       } else {
@@ -135,18 +136,28 @@ function CreateEvent() {
             />
           </RadioGroup>
         </FormControl>
+        <TextField
+          name="votes"
+          label="expected votes"
+          id="outlined-required"
+        />
+         <TextField
+          name="key"
+          label="event key"
+          id="outlined-required"
+        />
         <Typography>
-          Enter Candidate Name and Key
+        {t("candidate_name")}
           <Button onClick={handleClick}>
             <AddCircleIcon />
           </Button>
         </Typography>
-
+        
         {candidate.map((item, index) => (
           <Box key={index} sx={{ display: "flex" }}>
             <TextField
               id="outlined-basic"
-              label="Candidate Name"
+              label={t("candidate")}
               variant="outlined"
               onChange={(e) => {
                 item.name = e.target.value;
@@ -155,7 +166,7 @@ function CreateEvent() {
             />
             <TextField
               id="outlined-basic"
-              label="Unique Key"
+              label={t("unique_key")}
               variant="outlined"
               onChange={(e) => {
                 item.key = e.target.value;

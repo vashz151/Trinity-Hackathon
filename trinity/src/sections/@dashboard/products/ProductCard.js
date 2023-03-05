@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 // @mui
-import { Box, Card, Link, Typography, Stack } from "@mui/material";
+import { Box, Card, Link, Typography, Stack, Divider } from "@mui/material";
 import { styled } from "@mui/material/styles";
 // components
 import Label from "../../../components/label";
@@ -14,6 +14,11 @@ import Checkbox from "@mui/material/Checkbox";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert from "@mui/material/Alert";
 import { useTranslation } from 'react-i18next';
+import CardHeader from '@mui/material/CardHeader';
+import Avatar from '@mui/material/Avatar';
+import account from "../../../_mock/account";
+import DeleteIcon from '@mui/icons-material/Delete';
+import IconButton from '@mui/material/IconButton';
 // ----------------------------------------------------------------------
 
 const StyledProductImg = styled("img")({
@@ -22,6 +27,7 @@ const StyledProductImg = styled("img")({
   height: "100%",
   objectFit: "cover",
   position: "absolute",
+  opacity:'0.8',
 });
 
 // ----------------------------------------------------------------------
@@ -64,25 +70,36 @@ export default function ShopProductCard({ productts }) {
   };
   const { t } = useTranslation();
   return (
-    <Card>
-      {/* <Box sx={{ pt: "100%", position: "relative" }}>
-        <StyledProductImg alt={name} src={cover} />
-      </Box> */}
-
+    <Card sx={{minWidth:'300px'}} elevation={5}>
+       <CardHeader
+        avatar={
+          <Avatar aria-label="avatar" src={account.photoURL}>
+          </Avatar>
+        }
+        action={
+          <IconButton aria-label="settings">
+            <DeleteIcon />
+          </IconButton>
+        }
+        title={productts['0']}
+      />
+      <br/>
+      <Divider></Divider>
+      {/* <br/> */}
+      {/* <Typography sx={{display:'flex', justifyContent:'center',}}> Stakeholder Name: {productts['4']}</Typography> */}
       <Stack spacing={2} sx={{ p: 3 }}>
-        <Link color="inherit" underline="hover">
-          <Typography variant="subtitle2" noWrap>
-            {productts['0']}
-          </Typography>
-        </Link>
-
+     
         <Stack
           direction="row"
           alignItems="center"
           justifyContent="space-between"
         >
-          {productts["typ"]}
-          <Typography variant="subtitle1">
+         <Typography sx={{fontWeight:'bold'}}> Type </Typography>{productts["typ"]}
+        </Stack>
+        <Typography>
+         Description: {productts['desc']}
+          </Typography>
+        <Typography variant="subtitle1">
             <Typography
               component="span"
               variant="body1"
@@ -90,7 +107,7 @@ export default function ShopProductCard({ productts }) {
                 color: "text.disabled",
               }}
             >
-              <Button sx={{boxShadow:24, backgroundColor:'#b0b8ce'}} variant="contained" onClick={handleOpen}>
+            <Button size='large'sx={{boxShadow:24, backgroundColor:'#b0b8ce'}} variant="contained" onClick={handleOpen}>
                 {t('vote')}
               </Button>
             </Typography>
@@ -122,7 +139,6 @@ export default function ShopProductCard({ productts }) {
               </Box>
             </Box>
           </Modal>
-        </Stack>
       </Stack>
     </Card>
   );

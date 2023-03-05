@@ -13,7 +13,11 @@
     "ongoing_elections": "चल रहे चुनाव",
     "number_of_elections":"चुनावों की संख्या",
     "total_users": "कुल मतदाता",
-    "vote":"मतदान"
+    "vote":"मतदान",
+    "candidate_name":"उम्मीदवार का नाम और कुंजी दर्ज करें",
+    "candidate":"उम्मीदवार का नाम",
+    "unique_key":"अद्वितीय कुंजी"
+
 
 
   }

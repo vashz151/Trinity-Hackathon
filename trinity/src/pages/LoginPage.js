@@ -12,6 +12,7 @@ import { LoginForm } from '../sections/auth/login';
 import { useNavigate } from 'react-router-dom';
 import Lottie from 'react-lottie';
 import animationData from '../lottie/38435-register.json';
+import LanguagePopover from '../layouts/dashboard/header/LanguagePopover';
 // ----------------------------------------------------------------------
 
 const StyledRoot = styled('div')(({ theme }) => ({
@@ -85,6 +86,7 @@ export default function LoginPage() {
 
         <Container maxWidth="sm">
           <StyledContent>
+          {/* <LanguagePopover/> */}
             <Typography variant="h4" gutterBottom>
               Sign in to VoteRight
             </Typography>

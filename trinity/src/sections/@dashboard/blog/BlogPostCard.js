@@ -12,6 +12,7 @@ import Iconify from '../../../components/iconify';
 const StyledCardMedia = styled('div')({
   position: 'relative',
   paddingTop: 'calc(70% * 3 / 4)',
+ 
 });
 
 const StyledTitle = styled(Link)({
