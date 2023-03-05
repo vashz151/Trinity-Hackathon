@@ -3,13 +3,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 // @mui
 import { styled, alpha } from "@mui/material/styles";
-import {
-  Box,
-  Link,
-  Drawer,
-  Typography,
-  Avatar,
-} from "@mui/material";
+import { Box, Link, Drawer, Typography, Avatar } from "@mui/material";
 // mock
 import account from "../../../_mock/account";
 // hooks
@@ -56,11 +50,7 @@ const navConfig = [
     path: "/dashboard/app",
     icon: icon("ic_analytics"),
   },
-  {
-    title: "user",
-    path: "/dashboard/user",
-    icon: icon("ic_user"),
-  },
+
   {
     title: "Vote events",
     path: "/dashboard/vote",
@@ -71,12 +61,6 @@ const navConfig = [
     path: "/dashboard/result",
     icon: icon("ic_blog"),
   },
-
-  // {
-  //   title: 'login',
-  //   path: '/login',
-  //   icon: icon('ic_lock'),
-  // },
 ];
 const NAV_WIDTH = 280;
 

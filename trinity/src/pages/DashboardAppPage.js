@@ -25,8 +25,8 @@ import {
 // ----------------------------------------------------------------------
 
 export default function DashboardAppPage() {
-  const[balance, setBalance] = useState("")
-  const[numeve, setNumeve] = useState(0)
+  const [balance, setBalance] = useState("");
+  const [numeve, setNumeve] = useState(0);
   const theme = useTheme();
   const { t } = useTranslation();
 
@@ -43,16 +43,16 @@ export default function DashboardAppPage() {
         Ballot.abi,
         networkData.address
       );
-        const len = await ballot.methods.getEventLength().call();
-       setNumeve(len)
+      const len = await ballot.methods.getEventLength().call();
+      setNumeve(len);
     }
   };
 
   useEffect(() => {
     let bl = localStorage.getItem("balance");
-    setBalance(bl.slice(0,8))
-    handleSubmit()
-  }, [])
+    setBalance(bl.slice(0, 8));
+    handleSubmit();
+  }, []);
   return (
     <>
       <Helmet>
@@ -85,7 +85,7 @@ export default function DashboardAppPage() {
           <Grid item xs={12} sm={6} md={3}>
             <AppWidgetSummary
               title={t("wallet_balance")}
-              total={balance}
+              total={parseInt(balance)}
               color="warning"
               icon={"ant-design:gitlab-filled"}
             />
