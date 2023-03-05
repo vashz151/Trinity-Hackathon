@@ -4,7 +4,7 @@ import DashboardLayout from "./layouts/dashboard";
 import SimpleLayout from "./layouts/simple";
 //
 import ResultPage from "./pages/ResultPage";
-import UserPage from "./pages/UserPage";
+
 import LoginPage from "./pages/LoginPage";
 import Page404 from "./pages/Page404";
 import VoteEventsPage from "./pages/VoteEventsPage";
@@ -27,7 +27,6 @@ export default function Router() {
       children: [
         { element: <Navigate to="/dashboard/app" /> },
         { path: "app", element: <DashboardAppPage /> },
-        { path: "user", element: <UserPage /> },
         { path: "vote", element: <VoteEventsPage /> },
         { path: "result", element: <ResultPage /> },
         { path: "event", element: <CreateEvent /> },

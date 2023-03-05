@@ -16,7 +16,8 @@
     "vote":"VOTE",
     "candidate_name":" Enter Candidate Name and Key",
     "candidate":"candidate name",
-    "unique_key":"unique key"
+    "unique_key":"unique key",
+    "wallet_balance":"Wallet Balance"
     
   }
   

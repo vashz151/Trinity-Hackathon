@@ -35,11 +35,6 @@ const navconfig = [
     icon: icon("ic_analytics"),
   },
   {
-    title: "user",
-    path: "/dashboard/user",
-    icon: icon("ic_user"),
-  },
-  {
     title: "Vote events",
     path: "/dashboard/vote",
     icon: icon("ic_cart"),

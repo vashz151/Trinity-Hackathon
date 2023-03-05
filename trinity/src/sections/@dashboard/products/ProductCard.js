@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 // @mui
+import { Grid } from '@mui/material';
 import { Box, Card, Link, Typography, Stack, Divider } from "@mui/material";
 import { styled } from "@mui/material/styles";
 // components
@@ -70,7 +71,8 @@ export default function ShopProductCard({ productts }) {
   };
   const { t } = useTranslation();
   return (
-    <Card sx={{minWidth:'300px'}} elevation={5}>
+    <Grid sx={{display:'flex'}}>
+    <Card sx={{width:345,height:'300px'}} elevation={5}>
        <CardHeader
         avatar={
           <Avatar aria-label="avatar" src={account.photoURL}>
@@ -141,5 +143,6 @@ export default function ShopProductCard({ productts }) {
           </Modal>
       </Stack>
     </Card>
+    </Grid>
   );
 }
