@@ -45,12 +45,13 @@ const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-export default function ShopProductCard({ product }) {
-  const { name, cover, status } = product;
+export default function ShopProductCard({ productts }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [buttonOpen, setOpenButton] = React.useState(false);
+
+  console.log(productts, "waahh");
 
   const handleClick = () => {
     setOpenButton(true);
@@ -64,14 +65,14 @@ export default function ShopProductCard({ product }) {
   const { t } = useTranslation();
   return (
     <Card>
-      <Box sx={{ pt: "100%", position: "relative" }}>
+      {/* <Box sx={{ pt: "100%", position: "relative" }}>
         <StyledProductImg alt={name} src={cover} />
-      </Box>
+      </Box> */}
 
       <Stack spacing={2} sx={{ p: 3 }}>
         <Link color="inherit" underline="hover">
           <Typography variant="subtitle2" noWrap>
-            {name}
+            {productts['0']}
           </Typography>
         </Link>
 
@@ -80,7 +81,7 @@ export default function ShopProductCard({ product }) {
           alignItems="center"
           justifyContent="space-between"
         >
-          Ranked-Choice
+          {productts["typ"]}
           <Typography variant="subtitle1">
             <Typography
               component="span"
