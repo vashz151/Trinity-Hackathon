@@ -1,24 +1,20 @@
 import PropTypes from "prop-types";
 // @mui
-import { Box, Card, Link, Typography, Stack, Divider } from "@mui/material";
+import { Card, Link, Typography, Stack, Divider } from "@mui/material";
 import { styled } from "@mui/material/styles";
 // components
-import Label from "../../../components/label";
-import { ColorPreview } from "../../../components/color-utils";
 import Button from "@mui/material/Button";
-import Modal from "@mui/material/Modal";
-import React from "react";
-import FormGroup from "@mui/material/FormGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Snackbar from "@mui/material/Snackbar";
+import React, { useEffect } from "react";
 import MuiAlert from "@mui/material/Alert";
-import { useTranslation } from 'react-i18next';
-import CardHeader from '@mui/material/CardHeader';
-import Avatar from '@mui/material/Avatar';
+import { useTranslation } from "react-i18next";
+import CardHeader from "@mui/material/CardHeader";
+import Avatar from "@mui/material/Avatar";
 import account from "../../../_mock/account";
-import DeleteIcon from '@mui/icons-material/Delete';
-import IconButton from '@mui/material/IconButton';
+import DeleteIcon from "@mui/icons-material/Delete";
+import Ballot from "../../../truffle_abis/Ballot.json";
+import IconButton from "@mui/material/IconButton";
+import { useNavigate } from "react-router-dom";
+
 // ----------------------------------------------------------------------
 
 const StyledProductImg = styled("img")({
@@ -27,7 +23,7 @@ const StyledProductImg = styled("img")({
   height: "100%",
   objectFit: "cover",
   position: "absolute",
-  opacity:'0.8',
+  opacity: "0.8",
 });
 
 // ----------------------------------------------------------------------
@@ -51,94 +47,142 @@ const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-export default function ShopProductCard({ productts }) {
+export default function ShopProductCard({ productts, status }) {
+  const navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
   const [buttonOpen, setOpenButton] = React.useState(false);
+  const [eventId, setEventId] = React.useState("");
 
-  console.log(productts, "waahh");
+  const handleVote = async () => {
+    console.log("dfdf");
+    const account = localStorage.getItem("id");
+    const networkId = await window.ethereum.request({
+      method: "net_version",
+    });
+    console.log("networkId: ", networkId);
+    const networkData = await Ballot.networks[networkId];
+    if (networkData) {
+      const ballot = new window.web3.eth.Contract(
+        Ballot.abi,
+        networkData.address
+      );
+      // const allPastEvents = await ballot.getPastEvents('allEvents', {
+
+      const isAllowed = await ballot.methods
+        .isAllowedToVote(account, parseInt(productts["7"]))
+        .call();
+      console.log(isAllowed);
+    }
+  };
+
+  const seeList = async () => {
+    const account = localStorage.getItem("id");
+    const networkId = await window.ethereum.request({
+      method: "net_version",
+    });
+    console.log("networkId: ", networkId);
+    const networkData = await Ballot.networks[networkId];
+    if (networkData) {
+      const ballot = new window.web3.eth.Contract(
+        Ballot.abi,
+        networkData.address
+      );
+      const canlen = await ballot.methods
+        .getCandidatesLength(productts["7"])
+        .call();
+      console.log(canlen);
+      for (let i = 0; i < canlen; i++) {
+        const res = await ballot.methods.getCandidate(productts["7"], i).call();
+        let name = await window.web3.utils.hexToUtf8(res["name"]);
+        console.log(name);
+        console.log(res);
+      }
+    }
+  };
 
   const handleClick = () => {
-    setOpenButton(true);
+    handleVote();
+    setEventId(productts["7"]);
+    navigate("/eventconfirm", { state: { eventId: productts["7"] } });
   };
-  const handleCloseButton = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
+
+  useEffect(() => {
+    if (status === true) {
+      setOpen(true);
     }
-    setOpenButton(false);
-  };
+  }, [status]);
+
   const { t } = useTranslation();
   return (
-    <Card sx={{minWidth:'300px'}} elevation={5}>
-       <CardHeader
-        avatar={
-          <Avatar aria-label="avatar" src={account.photoURL}>
-          </Avatar>
-        }
+    <Card sx={{ minWidth: "300px" }} elevation={5}>
+      <CardHeader
+        avatar={<Avatar aria-label="avatar" src={account.photoURL}></Avatar>}
         action={
           <IconButton aria-label="settings">
             <DeleteIcon />
           </IconButton>
         }
-        title={productts['0']}
+        title={productts["0"]}
       />
-      <br/>
+      <br />
       <Divider></Divider>
       {/* <br/> */}
       {/* <Typography sx={{display:'flex', justifyContent:'center',}}> Stakeholder Name: {productts['4']}</Typography> */}
       <Stack spacing={2} sx={{ p: 3 }}>
-     
         <Stack
           direction="row"
           alignItems="center"
           justifyContent="space-between"
         >
-         <Typography sx={{fontWeight:'bold'}}> Type </Typography>{productts["typ"]}
+          <Typography sx={{ fontWeight: "bold" }}> Type </Typography>
+          {productts["typ"]}
         </Stack>
-        <Typography>
-         Description: {productts['desc']}
-          </Typography>
+        <Typography>Description: {productts["desc"]}</Typography>
         <Typography variant="subtitle1">
-            <Typography
-              component="span"
-              variant="body1"
-              sx={{
-                color: "text.disabled",
-              }}
-            >
-            <Button size='large'sx={{boxShadow:24, backgroundColor:'#b0b8ce'}} variant="contained" onClick={handleOpen}>
-                {t('vote')}
-              </Button>
-            </Typography>
-          </Typography>
-          <Modal
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
+          <Typography
+            component="span"
+            variant="body1"
+            sx={{
+              color: "text.disabled",
+            }}
           >
-            <Box sx={style}>
-              <Typography id="modal-modal-title" variant="h6" component="h2">
-                Select the Person to vote for
-              </Typography>
+            <Button
+              size="large"
+              sx={{ boxShadow: 24, backgroundColor: "#b0b8ce" }}
+              variant="contained"
+              onClick={handleClick}
+            >
+              {t("vote")}
+            </Button>
+          </Typography>
+        </Typography>
+        {/* <Modal
+          open={open}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        > */}
+        {/* <Box sx={style}>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              Select the Person to vote for
+            </Typography>
+            <FormGroup>
               <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                <FormGroup>
-                  <FormControlLabel
-                    control={<Checkbox defaultChecked />}
-                    label="Sakshi"
-                  />
-                  <FormControlLabel control={<Checkbox />} label="Yash" />
-                </FormGroup>
+                <FormControlLabel
+                  control={<Checkbox defaultChecked />}
+                  label="Sakshi"
+                />
+                <FormControlLabel control={<Checkbox />} label="Yash" />
               </Typography>
-              <br />
-              <Box sx={{ display: "flex", justifyContent: "center" }}>
-                <Button variant="outlined" onClick={handleClick}>
-                  submit
-                </Button>
-              </Box>
-            </Box>
-          </Modal>
+            </FormGroup> */}
+
+        <br />
+        {/* <Box sx={{ display: "flex", justifyContent: "center" }}>
+              <Button variant="outlined" onClick={handleClick}>
+                Submit
+              </Button>
+            </Box> */}
+        {/* </Box> */}
+        {/* </Modal> */}
       </Stack>
     </Card>
   );

@@ -5,8 +5,10 @@ import { CircularProgress } from "@mui/material";
 import { getDetail } from "../api/FetchDetail";
 import { sendOtp } from "../api/SendOtp";
 import Icon from "./icon.svg";
+import { useNavigate } from "react-router-dom";
 function VerifyOtp() {
   localStorage.setItem("id", "0x5B0936A2Be9a5F73E267279aeeb68445eeFb18b7");
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [mobile, setMobile] = useState();
   const [password, setPwd] = useState();
@@ -42,7 +44,7 @@ function VerifyOtp() {
 
     if (password.toString() === otp) {
       console.log("success");
-      // showAlert("success", "OTP verified successfully!");
+      navigate("/biometric");
     } else {
       console.log("failed");
     }

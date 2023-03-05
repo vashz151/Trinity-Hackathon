@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import axios from "axios";
 import * as React from "react";
 // @mui
+import { useNavigate } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import {
   Link,
@@ -69,6 +70,7 @@ const StyledContent = styled("div")(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 export default function RegisterPage() {
+  const navigate = useNavigate();
   const mdUp = useResponsive("up", "md");
   const [state, setState] = React.useState({
     name: null,
@@ -83,7 +85,9 @@ export default function RegisterPage() {
     console.log(response);
     if (response.data == "You are unknown first register your self") {
       alert("You are unknown first register your self");
+      navigate("/dashboard/app");
     } else if (response.data) {
+      navigate("/modal");
       setState({ name: response.data, logged_in: true });
     }
   };

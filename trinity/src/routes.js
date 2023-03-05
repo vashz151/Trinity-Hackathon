@@ -13,6 +13,7 @@ import RegisterPage from "./pages/RegisterPage";
 import CreateEvent from "./pages/CreateEvent";
 import Home from "./pages/Home";
 import VerifyOtp from "./pages/VerifyOtp";
+import EventId from "./pages/EventId";
 // ----------------------------------------------------------------------
 
 export default function Router() {
@@ -38,12 +39,16 @@ export default function Router() {
       element: <LoginPage />,
     },
     {
-      path: "Register",
+      path: "biometric",
       element: <RegisterPage />,
     },
     {
       path: "verify",
       element: <VerifyOtp />,
+    },
+    {
+      path: "eventconfirm",
+      element: <EventId />,
     },
     {
       element: <SimpleLayout />,
