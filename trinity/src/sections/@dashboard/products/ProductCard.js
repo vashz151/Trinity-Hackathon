@@ -74,35 +74,10 @@ export default function ShopProductCard({ productts, status }) {
       console.log(isAllowed);
     }
   };
-
-  const seeList = async () => {
-    const account = localStorage.getItem("id");
-    const networkId = await window.ethereum.request({
-      method: "net_version",
-    });
-    console.log("networkId: ", networkId);
-    const networkData = await Ballot.networks[networkId];
-    if (networkData) {
-      const ballot = new window.web3.eth.Contract(
-        Ballot.abi,
-        networkData.address
-      );
-      const canlen = await ballot.methods
-        .getCandidatesLength(productts["7"])
-        .call();
-      console.log(canlen);
-      for (let i = 0; i < canlen; i++) {
-        const res = await ballot.methods.getCandidate(productts["7"], i).call();
-        let name = await window.web3.utils.hexToUtf8(res["name"]);
-        console.log(name);
-        console.log(res);
-      }
-    }
-  };
-
   const handleClick = () => {
     handleVote();
     setEventId(productts["7"]);
+    localStorage.setItem("ev", productts["7"]);
     navigate("/eventconfirm", { state: { eventId: productts["7"] } });
   };
 
