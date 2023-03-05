@@ -14,6 +14,7 @@ import CreateEvent from "./pages/CreateEvent";
 import Home from "./pages/Home";
 import VerifyOtp from "./pages/VerifyOtp";
 import EventId from "./pages/EventId";
+import Modal from "./pages/Modal";
 // ----------------------------------------------------------------------
 
 export default function Router() {
@@ -48,6 +49,10 @@ export default function Router() {
     {
       path: "eventconfirm",
       element: <EventId />,
+    },
+    {
+      path: "modal",
+      element: <Modal/>,
     },
     {
       element: <SimpleLayout />,
