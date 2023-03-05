@@ -1,16 +1,16 @@
 import { Helmet } from 'react-helmet-async';
 // @mui
 import { styled } from '@mui/material/styles';
-import { Link, Container, Typography, Divider, Stack, Button } from '@mui/material';
+import { Link, Container, Typography, Divider, Stack, Button, IconButton } from '@mui/material';
 // hooks
 import useResponsive from '../hooks/useResponsive';
 // components
 import Logo from '../components/logo';
 import Iconify from '../components/iconify';
 // sections
-import { LoginForm } from '../sections/auth/login';
+import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import Lottie from 'react-lottie';
-import animationData from '../lottie/134945-zpunet-icon.json';
+import animationData from '../lottie/138527-face-recognition.json';
 
 // ----------------------------------------------------------------------
 
@@ -72,12 +72,12 @@ export default function RegisterPage() {
         {mdUp && (
           <StyledSection>
             <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
-              Hi, Welcome Back
+              Image Verification
             </Typography>
             <Lottie 
 	    options={defaultOptions}
         height={400}
-        width={400}
+        width={700}
       />
           </StyledSection>
         )}
@@ -85,11 +85,13 @@ export default function RegisterPage() {
         <Container maxWidth="sm">
           <StyledContent>
             <Typography variant="h4" gutterBottom>
-              Register to VoteRight
+              Stay Steady and in a well lit area
             </Typography>
             <Divider sx={{ my: 3 }}>
             </Divider>
-            <LoginForm />
+            <Button  sx={{backgroundColor:"lightgrey"}}>
+              <Typography variant="h4">Capture Image</Typography>
+            </Button>
           </StyledContent>
         </Container>
       </StyledRoot>
