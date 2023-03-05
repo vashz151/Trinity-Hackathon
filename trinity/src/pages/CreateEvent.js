@@ -71,7 +71,7 @@ function CreateEvent() {
         console.log(candidateNames);
         console.log(candidateKeys);
         console.log(document.getElementsByName("Name")[0].value);
-        const res = await ballot.methods.createEvent(document.getElementsByName("Name")[0].value, document.getElementsByName("describe")[0].value,document.getElementsByName("names")[0].value,time, 50, candidateNames, candidateKeys, 2145, value).send({ from: account });
+        const res = await ballot.methods.createEvent(document.getElementsByName("Name")[0].value, document.getElementsByName("describe")[0].value,document.getElementsByName("names")[0].value,time, 50, candidateNames, candidateKeys, 2115, value).send({ from: account });
         console.log(res);
 
       } else {
