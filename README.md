@@ -1,4 +1,5 @@
 MY VOTE
+
 Problem: As of now, voting takes place in a traditional centralized manner which leads to tampering of votes and is devoid of transparency. This makes the voting process tedious and unreliable for the users.  The votes can be changed as well. 
 This creates the entire voting process not safe due to which the users are reluctant to give their vote.
 
